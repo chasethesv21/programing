@@ -1,0 +1,48 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Aurora CoS", "Synapse")
+
+--Item Farms
+local Main = Window:NewTab("Main")
+local MainSection = Main:NewSection("Gift Farm")
+
+
+
+MainSection:NewToggle("Gift Farm", "ToggleInfo", function(state)
+    if state then
+    -- Set to false to stop the farm
+
+getgenv().DroppedGifts = true
+
+-- Steal them eggs
+
+task.spawn(function()
+    while getgenv().DroppedGifts == true do
+        task.wait(0.5)
+        for i,v in pairs(workspace.DroppedGifts:GetDescendants()) do
+    if v:IsA("TouchTransmitter") then
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1)
+end
+end
+end
+end)
+    else
+    -- Set to false to stop the farm
+
+getgenv().DroppedGifts = false
+
+-- Steal them eggs
+
+task.spawn(function()
+    while getgenv().DroppedGifts == true do
+        task.wait(0.5)
+        for i,v in pairs(workspace.DroppedGifts:GetDescendants()) do
+    if v:IsA("TouchTransmitter") then
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1)
+end
+end
+end
+end)
+    end
+end)
